@@ -1,0 +1,13 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PADS PD-TD 비교</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="pads.css"></head><body>
+<header><div><p class="eyebrow">PADS / PD-TD vs HEALTHY</p><h1>가속도 3차원 비교</h1><p class="subtitle">Relaxed · TouchNose / 기록 시작점 기준 (0,0,0)</p></div><a class="back" href="index.html">현장 측정 화면</a></header>
+<main class="pads-main">
+<section class="card controls"><div class="section-title"><span>01</span><h2>비교 조건</h2></div><div class="control-grid">
+<label>보기<select id="mode"><option value="individual">개인별</option><option value="group">군 전체</option></select></label>
+<label>동작<select id="task"><option>TouchNose</option><option>Relaxed</option></select></label>
+<label>손목<select id="wrist"><option>Right</option><option>Left</option></select></label>
+<label id="pdLabel">PD-TD 참가자<select id="pdSubject"></select></label><label id="healthyLabel">Healthy 참가자<select id="healthySubject"></select></label>
+</div><div class="time-control"><div><b>시간 구간</b><output id="timeText">0.0–10.2초</output></div><label>시작<input id="startTime" type="range" min="0" max="10.2" value="0" step="0.1"></label><label>끝<input id="endTime" type="range" min="0" max="10.2" value="10.2" step="0.1"></label><button id="play">시간순 재생</button></div>
+</section>
+<section class="comparison"><article class="card plot-card"><h2>PD-TD <small id="pdTitle"></small></h2><canvas id="pdCanvas" aria-label="PD-TD 3차원 가속도 점 분포"></canvas></article><article class="card plot-card"><h2>Healthy <small id="healthyTitle"></small></h2><canvas id="healthyCanvas" aria-label="건강 대조군 3차원 가속도 점 분포"></canvas></article></section>
+<section class="card notes"><b>읽는 법</b><span>모든 기록에서 첫 가속도 값을 빼 시작점을 원점으로 맞췄습니다. 두 그림은 항상 같은 X·Y·Z 축 범위를 사용합니다. 보라색→민트색 순서가 시간의 흐름입니다.</span></section>
+</main><script src="pads_data.js"></script><script src="pads.js"></script></body></html>

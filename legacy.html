@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>기존 자체 IMU 데이터 시각화</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="legacy.css">
+</head>
+<body>
+  <header>
+    <div><p class="eyebrow">ADA-IOT / GITHUB DATA</p><h1>기존 자체 IMU 데이터</h1><p class="subtitle">GitHub의 220개 기록 · 떨림/비떨림 · 가속도·자이로·기기 각도</p></div>
+    <a class="back" href="index.html">← 현장 콘솔</a>
+  </header>
+  <main class="legacy-main">
+    <section class="card filters">
+      <div class="section-title"><span>01</span><h2>기록 선택</h2></div>
+      <label>데이터셋<select id="dataset"></select></label>
+      <label>참가자<select id="subject"></select></label>
+      <label>상태<select id="label"></select></label>
+      <label>기록<select id="record"></select></label>
+      <div class="record-info" id="recordInfo"></div>
+      <div class="legend"><i class="tremor"></i>떨림 <i class="still"></i>비떨림/정지</div>
+    </section>
+
+    <section class="card player">
+      <div class="section-title row"><div><span>02</span><h2>시간 재생</h2></div><button id="play">▶ 재생</button></div>
+      <input id="time" type="range" min="0" max="100" value="0">
+      <div class="time-row"><b id="timeNow">0.00 s</b><span id="timeEnd">0.00 s</span></div>
+    </section>
+
+    <section class="card body-panel">
+      <div class="section-title"><span>03</span><h2>사람 움직임 개략도</h2></div>
+      <svg id="person" viewBox="0 0 360 390" role="img" aria-label="기기 각도로 표현한 팔 움직임">
+        <circle class="body" cx="180" cy="62" r="27"/><path class="body" d="M180 89 L180 225 M120 125 L240 125 M180 225 L135 330 M180 225 L225 330"/>
+        <g id="leftArm"><path class="limb" d="M120 125 L82 190 L66 264"/><circle class="joint" cx="120" cy="125" r="6"/><circle class="joint" cx="82" cy="190" r="6"/><circle id="leftWrist" class="wrist" cx="66" cy="264" r="10"/></g>
+        <path class="limb muted-arm" d="M240 125 L278 190 L294 264"/><circle class="joint" cx="240" cy="125" r="6"/><circle class="joint" cx="278" cy="190" r="6"/><circle class="joint" cx="294" cy="264" r="7"/>
+        <text x="180" y="375" text-anchor="middle" id="poseText">센서 각도 기반 팔 방향</text>
+      </svg>
+      <p class="note">센서가 한 부위에만 있으므로 전신 자세가 아니라, 측정 기기의 X·Y 각도로 팔 방향을 단순화해 표시합니다.</p>
+    </section>
+
+    <section class="card cloud-panel">
+      <div class="section-title"><span>04</span><h2>3차원 가속도 점 분포</h2></div>
+      <canvas id="cloud"></canvas>
+      <p class="note">각 시행의 첫 값을 (0,0,0)으로 맞춘 상대 가속도입니다. 색이 밝을수록 현재 시점에 가깝습니다.</p>
+    </section>
+
+    <section class="card series-panel">
+      <div class="section-title"><span>05</span><h2>시간에 따른 센서값</h2></div>
+      <canvas id="series"></canvas>
+      <div class="series-legend"><span class="sx">X</span><span class="sy">Y</span><span class="sz">Z</span><b>세로선 = 현재 시점</b></div>
+    </section>
+  </main>
+  <footer>자체 수집 데이터 시각화 · 의료 진단용이 아닙니다.</footer>
+  <script src="legacy_data.js"></script><script src="legacy.js"></script>
+</body>
+</html>
